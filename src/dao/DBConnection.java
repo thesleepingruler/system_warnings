@@ -17,7 +17,8 @@ public class DBConnection {
                 String user = System.getenv("DB_USER");
                 String password = System.getenv("DB_PASSWORD");
 
-                Class.forName("com.mysql.cj.jdbc.Driver");
+                // FORCE MYSQL DRIVER LOAD
+                DriverManager.registerDriver(new com.mysql.cj.jdbc.Driver());
 
                 conn = DriverManager.getConnection(
                         url,
@@ -25,15 +26,15 @@ public class DBConnection {
                         password
                 );
 
-                System.out.println("Database Connected Successfully");
+                System.out.println("DATABASE CONNECTED SUCCESSFULLY");
             }
 
         } catch (Exception e) {
 
-            System.out.println("Database Connection Failed");
+            System.out.println("DATABASE CONNECTION FAILED");
             e.printStackTrace();
         }
 
         return conn;
     }
-}0
+}
